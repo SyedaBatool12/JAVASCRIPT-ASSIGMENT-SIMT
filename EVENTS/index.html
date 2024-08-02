@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alert on Click</title>
+</head>
+<body>
+    <a href="#" onclick="showAlert()">Click me</a>
+	<title>Mobile Images with Alerts</title>
+    <style>
+        .mobile-images img {
+            width: 100px; 
+            height: auto; 
+            margin: 10px;
+            cursor: pointer;
+        }
+		 table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+
+
+    <h1>Click on an Image</h1>
+    <div class="mobile-images">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0praxNFT7dTQYuQlpiE9nl6gbXzpnY0kSRg&s+1" alt="Mobile 1" onclick="showAlert('Mobile 1')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0praxNFT7dTQYuQlpiE9nl6gbXzpnY0kSRg&s+2" alt="Mobile 2" onclick="showAlert('Mobile 2')">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0praxNFT7dTQYuQlpiE9nl6gbXzpnY0kSRg&s+3" alt="Mobile 3" onclick="showAlert('Mobile 3')">
+    </div>
+	 <h1>Student Records</h1>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>20</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Mark</td>
+                <td>21</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Emma</td>
+                <td>19</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Sophia</td>
+                <td>22</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>James</td>
+                <td>20</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Mia</td>
+                <td>23</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Olivia</td>
+                <td>21</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Daniel</td>
+                <td>22</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Lucas</td>
+                <td>20</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+            <tr>
+                <td>Ava</td>
+                <td>19</td>
+                <td><button onclick="deleteRow(this)">Delete</button></td>
+            </tr>
+        </tbody>
+    </table>
+	<h1>Hover over the Image</h1>
+    <img id="myImage" src="https://img.freepik.com/free-vector/cute-koala-hanging-tree-cartoon-vector-icon-illustration-animal-nature-icon-concept-isolated_138676-8369.jpg" alt="Original Image"
+         onmouseover="changeImage()" onmouseout="resetImage()">
+
+  <script src="app.js"></script>
+  
+</body>
+</html>
+
+
+
+  
+        
+   
+
+    
+    
+
+
+
+
+    
+
+
