@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #more {
+            display: none;
+        }
+        #editForm {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1. Signup Form -->
+    <h2>Signup Form</h2>
+    <form id="signupForm" onsubmit="displayFormData(event)">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <h3>Form Data:</h3>
+    <div id="formDataDisplay"></div>
+
+    <!-- 2. Read More Functionality -->
+    <h2>Item Details</h2>
+    <p id="summary">This is a great item. You will love it because...</p>
+    <span id="dots">...</span>
+    <span id="more">it has amazing features, is highly durable, and comes with a one-year warranty. Get yours now at a special discount!</span>
+    <button onclick="readMore()">Read More</button>
+
+    <!-- 3. Student Details Form with Editable Table -->
+    <h2>Student Details Form</h2>
+    <form id="studentForm" onsubmit="addStudent(event)">
+        <label for="studentName">Name:</label>
+        <input type="text" id="studentName" name="studentName" required><br><br>
+
+        <label for="studentAge">Age:</label>
+        <input type="number" id="studentAge" name="studentAge" required><br><br>
+
+        <label for="studentGrade">Grade:</label>
+        <input type="text" id="studentGrade" name="studentGrade" required><br><br>
+
+        <button type="submit">Add Student</button>
+    </form>
+
+    <h3>Student List</h3>
+    <table id="studentTable" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Grade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <h2>Edit Student</h2>
+    <form id="editForm" onsubmit="saveEdit(event)">
+        <input type="hidden" id="editIndex">
+        <label for="editName">Name:</label>
+        <input type="text" id="editName" required><br><br>
+
+        <label for="editAge">Age:</label>
+        <input type="number" id="editAge" required><br><br>
+
+        <label for="editGrade">Grade:</label>
+        <input type="text" id="editGrade" required><br><br>
+
+        <button type="submit">Save</button>
+        <button type="button" onclick="cancelEdit()">Cancel</button>
+    </form>
+
+    <script>
+        // Signup form functionality
+        function displayFormData(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            document.getElementById('formDataDisplay').innerHTML =
+                "<p><strong>Name:</strong> " + name + "</p>" +
+                "<p><strong>Email:</strong> " + email + "</p>" +
+                "<p><strong>Password:</strong> " + password + "</p>";
+        }
+
+        // Read More functionality
+        function readMore() {
+            var dots = document.getElementById("dots");
+            var moreText = document.getElementById("more");
+            var btnText = event.target;
+
+            if (dots.style.display === "none") {
+                dots.style.display = "inline";
+                moreText.style.display = "none";
+                btnText.innerHTML = "Read More";
+            } else {
+                dots.style.display = "none";
+                moreText.style.display = "inline";
+                btnText.innerHTML = "Read Less";
+            }
+        }
+
+        // Student form with table functionality
+        var students = [];
+
+        function addStudent(event) {
+            event.preventDefault();
+            var studentName = document.getElementById('studentName').value;
+            var studentAge = document.getElementById('studentAge').value;
+            var studentGrade = document.getElementById('studentGrade').value;
+
+            var student = { studentName, studentAge, studentGrade };
+            students.push(student);
+            displayStudents();
+
+            document.getElementById('studentForm').reset();
+        }
+
+        function displayStudents() {
+            var tbody = document.querySelector('#studentTable tbody');
+            tbody.innerHTML = ''; // Clear table before repopulating
+
+            students.forEach((student, index) => {
+                var row = tbody.insertRow();
+
+                row.insertCell(0).innerHTML = student.studentName;
+                row.insertCell(1).innerHTML = student.studentAge;
+                row.insertCell(2).innerHTML = student.studentGrade;
+
+                var actionsCell = row.insertCell(3);
+                actionsCell.innerHTML = `
+                    <button onclick="editStudent(${index})">Edit</button>
+                    <button onclick="deleteStudent(${index})">Delete</button>
+                `;
+            });
+        }
+
+        function deleteStudent(index) {
+            students.splice(index, 1);
+            displayStudents();
+        }
+
+        function editStudent(index) {
+            document.getElementById('editIndex').value = index;
+            document.getElementById('editName').value = students[index].studentName;
+            document.getElementById('editAge').value = students[index].studentAge;
+            document.getElementById('editGrade').value = students[index].studentGrade;
+            document.getElementById('editForm').style.display = 'block';
+        }
+
+        function saveEdit(event) {
+            event.preventDefault();
+            var index = document.getElementById('editIndex').value;
+            students[index].studentName = document.getElementById('editName').value;
+            students[index].studentAge = document.getElementById('editAge').value;
+            students[index].studentGrade = document.getElementById('editGrade').value;
+            displayStudents();
+            document.getElementById('editForm').style.display = 'none';
+        }
+
+        function cancelEdit() {
+            document.getElementById('editForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
