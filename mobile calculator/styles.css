@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://img.freepik.com/premium-photo/top-view-desk-concept-with-calculator_23-2148604951.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+}
+
+.calculator {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.display {
+    background-color: #222;
+    color: #fff;
+    font-size: 2em;
+    text-align: right;
+    padding: 20px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.button {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    font-size: 1.5em;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.button:active {
+    background-color: #ddd;
+}
+
+.button.large {
+    grid-column: span 2;
+}
